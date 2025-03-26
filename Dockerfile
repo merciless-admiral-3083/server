@@ -5,16 +5,16 @@ FROM node:16
 WORKDIR /app
 
 # Copy the package.json and package-lock.json files for npm install
-COPY ./SERVER/package*.json ./SERVER/
+COPY ./package*.json ./
 
 # Install dependencies
 RUN npm install --prefix ./SERVER
 
 # Copy the entire server code (including node_modules, auth.ts, etc.) to the container
-COPY ./SERVER /app/SERVER
+COPY ./ /app/
 
 # Expose the backend port (change it to your actual backend port if needed)
 EXPOSE 5000
 
 # Run the backend server
-CMD ["node", "SERVER/index.ts"]
+CMD ["node", "./index.ts"]
