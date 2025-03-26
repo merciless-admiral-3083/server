@@ -1,5 +1,5 @@
 # Use a Node.js base image
-FROM node:16-alpine
+FROM node:16
 RUN touch /testfile
 
 # Set the working directory inside the container to /app
