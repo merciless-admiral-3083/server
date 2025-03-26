@@ -9,7 +9,7 @@ import {
   insertNutritionLogSchema,
   insertInjurySchema,
   insertFinanceSchema,
-} from "server/schema";
+} from "./schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   setupAuth(app);
