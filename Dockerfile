@@ -17,7 +17,7 @@ COPY ./SERVER /app/SERVER
 EXPOSE 5000
 
 # Run the backend server using the compiled index.js file
-CMD ["node", "/app/SERVER/index.js"]
+CMD ["node", "/SERVER/index.js"]
 
 # Build step to transpile typescript.
 # This makes the docker file multi-stage.
