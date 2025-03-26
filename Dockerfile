@@ -1,6 +1,5 @@
-# Use a Node.js base image
-FROM node:16
-RUN touch /testfile
+# Use a Debian-based Node.js image (better compatibility)
+FROM node:16-slim
 
 # Set the working directory inside the container to /app
 WORKDIR /app
@@ -13,9 +12,6 @@ RUN npm install --prefix /app/SERVER
 
 # Copy the rest of the server code (excluding node_modules) to the container
 COPY ./SERVER /app/SERVER
-
-# Clean npm cache and reinstall lightningcss
-RUN npm cache clean --force && npm uninstall lightningcss --prefix /app/SERVER && npm install lightningcss --prefix /app/SERVER
 
 # Run the build script to compile TypeScript to JavaScript using esbuild
 RUN npm run build --prefix /app/SERVER
