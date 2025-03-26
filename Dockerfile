@@ -1,23 +1,20 @@
-# Use an official Node.js runtime as a parent image
-FROM node:18-alpine
+# Use a Node.js base image
+FROM node:16
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json first to leverage caching
-COPY package.json package-lock.json ./
+# Copy the package.json and package-lock.json files for npm install
+COPY ./SERVER/package*.json ./SERVER/
 
 # Install dependencies
-RUN npm install
+RUN npm install --prefix ./SERVER
 
-# Copy the rest of the project files
-COPY . .
+# Copy the entire server code (including node_modules, auth.ts, etc.) to the container
+COPY ./SERVER /app/SERVER
 
-# Build the TypeScript files
-RUN npm run build
+# Expose the backend port (change it to your actual backend port if needed)
+EXPOSE 5000
 
-# Expose the port your server will run on
-EXPOSE 3000
-
-# Start the application
-CMD ["node", "dist/index.js"]
+# Run the backend server
+CMD ["node", "SERVER/index.ts"]
