@@ -11,10 +11,10 @@ COPY ./SERVER/package*.json ./SERVER/
 RUN npm install --prefix /app/SERVER
 
 # Copy the rest of the server code (including node_modules, auth.ts, etc.) to the container
-COPY ./SERVER /app/SERVER
+COPY ./SERVER /SERVER
 
 # Expose the backend port (use the correct port for your application, default here is 5000)
 EXPOSE 5000
 
 # Run the backend server using the index.ts file
-CMD ["node", "/app/SERVER/index.ts"]
+CMD ["node", "/SERVER/index.ts"]
